@@ -6,27 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-<form action="upTestPro.php" method="post">
+<form action="updateFormTest.php" method="post">
 <p><label>Enter the id to update</label><br/>
 <?php
-$conn = mysqli_connect("localhost", "root", "", "test");
-if ($conn)
-{
-$sql = "SELECT * FROM testTable";
-$res = mysqli_query($conn, $sql);
-if (mysqli_num_rows($res) > 0)
-{echo '<select name="selectedId">';
-while ($row = mysqli_fetch_assoc($res))
-{
-$id = $row['id'];
-echo '<option value="' $id '">'.$id.'</option>';
-}
-echo '</select>';
-}
-else
-{}
-die("Connection failed: ". mysqli_connect_error());
-
+$conn = mysqli_connect("localhost", "root", "", "alainadb");
+if ($conn) {
+    $sql = "SELECT * FROM testtable";
+    $res = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        echo '<select name="selectedId">';
+        while ($row = mysqli_fetch_assoc($res)) {
+            $StudentId = $row['StudentId'];
+            echo '<option value="' . $StudentId . '">' . $StudentId . '</option>'; 
+        }
+        echo '</select>';
+    } else {
+        echo "No records found.";
+    }
+} else {
+    die("Connection failed: " . mysqli_connect_error());
 }
 ?>
 <br/>
@@ -36,5 +34,3 @@ die("Connection failed: ". mysqli_connect_error());
 </form>
 </body>
 </html>
-
-
